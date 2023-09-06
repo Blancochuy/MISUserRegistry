@@ -7,3 +7,5 @@ Idea is to just use the google sheets api which will allow for quick additions a
 
 Will allow for member addition, removal, and status changes.
 Members should have first name, last name, email, phone, and date joined
+
+Also keep track of if the member has paid dues for the year
