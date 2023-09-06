@@ -9,3 +9,7 @@ Will allow for member addition, removal, and status changes.
 Members should have first name, last name, email, phone, and date joined
 
 Also keep track of if the member has paid dues for the year
+
+To start work run 
+    pip install -r requirements.txt
+then should be good to go
