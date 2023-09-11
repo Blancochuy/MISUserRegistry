@@ -7,9 +7,9 @@ __pycache__/
 *.so
 
 #secrets
-credentials.json
-config.py
-token.json
+src/config/credentials.json
+src/config/config.py
+src/config/token.json
 *.idea
 # Distribution / packaging
 .Python
