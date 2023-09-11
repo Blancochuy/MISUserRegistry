@@ -10,7 +10,8 @@ Members should have first name, last name, email, phone, and date joined
 
 Also keep track of if the member has paid dues for the year
 
-Before working, you need to retrieve secrets, can be found by contacting main developer
+Before working, you need to retrieve secrets. Secrets can be found in the google secrets manager
+Retrieve the secrets and add them to the respective files
 
 To start work run 
     pip install -r requirements.txt
@@ -18,3 +19,6 @@ then should be good to go
 Run from main.py 
 
 Will eventually expand so we can connect to the MIS website
+
+For future, may port to a SQL database which will allow for much better allocation, but that may be out of the scope
+of what am currently capable of
