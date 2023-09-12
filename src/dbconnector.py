@@ -1,5 +1,3 @@
-import google
-import google.auth
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
@@ -19,26 +17,25 @@ class DBConnector:
         # This is what we are using to tell google what we are attempting to communicate with
         self.service = build("sheets", "v4", credentials=self.credentials)
 
-        # this should set up the connection to the google sheet and allow for communication between python and google
+        # This should set up the connection to the Google sheet and allow for communication between python and Google
         request = self.service.spreadsheets().get(spreadsheetId=spreadsheet_id, ranges=[], includeGridData=False)
         self.sheet_props = request.execute()
 
         # This is the current location that we can use so row 2 should be the first available column if there is 0 users
         self.location = int(self.service.spreadsheets().values().get(
-                spreadsheetId=spreadsheet_id, range="H2:H2").execute().get('values', [])[0][0])+2
+            spreadsheetId=spreadsheet_id, range="A2:A2").execute().get('values', [])[0][0]) + 2
 
     def get_name(self):
-        print(self.sheet_props["properties"]["title"])
+        return self.sheet_props["properties"]["title"]
 
     def get_values(self, range_name=None):
         """
         Retrieves the values from a range that is input
         :param
-            range_name: range of values to be retrieved (A1:F1)
+            range_name: range of values to be retrieved EX: (A1:F1)
         :return
             values: list of lists, values from each row corresponded
         """
-        # pylint: disable=maybe-no-member
         try:
             result = self.service.spreadsheets().values().get(
                 spreadsheetId=spreadsheet_id, range=range_name).execute()
@@ -54,7 +51,7 @@ class DBConnector:
         :param
             range_name: range of values to be updated
             value_input_option: How the values are to be updated (USER_ENTERED)
-            _values: values that will be sent into the sheets
+            values: values that will be sent into the sheets
         """
         try:
             body = {
@@ -67,4 +64,3 @@ class DBConnector:
         except HttpError as error:
             print(f"An error occurred: {error}")
             return error
-
