@@ -43,6 +43,26 @@ class Userinput:
             lname: Last Name
         :return: True on success
         """
+        print(self.user_registry.locate_user(fname))
+
+    def remove_user(self, fname, lname):
+        """
+        should allow for admin to remove a user from the registry
+        :param
+            fname: First Name
+            lname: Last Name
+        :return: True on success
+        """
+        try:
+            location = "B" + str(self.user_registry.location) + ":F" + str(self.user_registry.location)
+            query = [fname, lname]
+            self.user_registry.update_values(range_name=location, values=[query])
+
+            #Remove one user from NumUsers
+            self.user_registry.update_values(range_name="A2", values=[[self.user_registry.location-1]])
+            return True
+        except errno as e:
+            return e
 
 
 
